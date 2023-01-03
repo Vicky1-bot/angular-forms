@@ -1,16 +1,21 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  providers: [DatePipe],
 })
 export class AppComponent implements OnInit {
   countries: any[];
+  datePipe: DatePipe;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, datePipe: DatePipe) {
+    this.datePipe = datePipe;
+  }
   ngOnInit(): void {
     this.http
       .get('https://restcountries.com/v3.1/all')
@@ -19,6 +24,7 @@ export class AppComponent implements OnInit {
         //console.log(this.countries);
       });
   }
+
   formData = [];
   title = 'Forms';
   @ViewChild('f') Forms: NgForm;
@@ -31,6 +37,7 @@ export class AppComponent implements OnInit {
     gender: '',
     countries: '',
     address: '',
+    dob: '',
   };
 
   submitted = false;
