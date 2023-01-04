@@ -65,23 +65,22 @@ export class AppComponent implements OnInit {
     this.Forms.reset();
   }
   @ViewChild('Name') Name: NgModel;
-  inputLength = 0;
+  nameInputLength = 0;
 
-  ngAfterViewInit() {
-    // Subscribe to the valueChanges observable of the NgModel directive
-    this.Name.valueChanges.subscribe((value: string) => {
-      // Update the inputLength property with the length of the input value
-      this.inputLength = value.length;
-    });
-  }
   @ViewChild('address') address: NgModel;
-  inputLength = 0;
+  addressInputLength = 0;
 
   ngAfterViewInit() {
-    // Subscribe to the valueChanges observable of the NgModel directive
+    // Subscribe to the valueChanges observable of the NgModel directive for the Name input
+    this.Name.valueChanges.subscribe((value: string) => {
+      // Update the nameInputLength property with the length of the input value
+      this.nameInputLength = value.length;
+    });
+
+    // Subscribe to the valueChanges observable of the NgModel directive for the address input
     this.address.valueChanges.subscribe((value: string) => {
-      // Update the inputLength property with the length of the input value
-      this.inputLength = value.length;
+      // Update the addressInputLength property with the length of the input value
+      this.addressInputLength = value.length;
     });
   }
 }

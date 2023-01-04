@@ -19,9 +19,7 @@
       <p class="help-block" *ngIf="!Name.valid && Name.touched">
         Please enter characters between 3 and 100.
       </p>
-      <p class="help-block">
-      Characters: {{ inputLength }}
-      </p>
+      <p class="help-block">Characters: {{ nameInputLength }}</p>
     </div>
     <div class="form-group">
       <label>Email: </label>
@@ -104,9 +102,7 @@
         Please enter characters between 10 and 250.
       </p>
     </div>
-    <p class="help-block">
-    Characters: {{ inputLength }}
-    </p>
+    <p class="help-block">Characters: {{ addressInputLength }}</p>
     <button class="btn btn-primary" type="submit" [disabled]="!f.valid">
       Submit
     </button>
