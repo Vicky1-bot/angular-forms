@@ -17,7 +17,7 @@
         #Name="ngModel"
       />
       <p class="help-block" *ngIf="!Name.valid && Name.touched">
-        Please enter characters between 3 and 100.
+        Please enter characters between 1 and 100.
       </p>
       <p class="help-block">Characters: {{ nameInputLength }}</p>
     </div>
@@ -94,7 +94,7 @@
         class="form-control"
         ngModel
         minlength="1"
-        maxlength="100"
+        maxlength="250"
         address
         #address="ngModel"
       />
