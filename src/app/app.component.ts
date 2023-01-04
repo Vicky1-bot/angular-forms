@@ -2,6 +2,8 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { NgModel } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient, datePipe: DatePipe) {
     this.datePipe = datePipe;
   }
+
   ngOnInit(): void {
     this.http
       .get('https://restcountries.com/v3.1/all')
@@ -23,6 +26,14 @@ export class AppComponent implements OnInit {
         this.countries = data;
         //console.log(this.countries);
       });
+
+    // Check if there is any saved form data in local storage
+    const savedFormData = localStorage.getItem('formData');
+    if (savedFormData) {
+      // If there is, parse the data and assign it to the formData array
+      this.formData = JSON.parse(savedFormData);
+    }
+    console.log(savedFormData);
   }
 
   formData = [];
@@ -45,9 +56,32 @@ export class AppComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+    // Push the form data to the formData array
     this.formData.push(this.Forms.value);
-    console.log(this.formData);
+
+    // Save the formData array to local storage
+    localStorage.setItem('formData', JSON.stringify(this.formData));
 
     this.Forms.reset();
+  }
+  @ViewChild('Name') Name: NgModel;
+  inputLength = 0;
+
+  ngAfterViewInit() {
+    // Subscribe to the valueChanges observable of the NgModel directive
+    this.Name.valueChanges.subscribe((value: string) => {
+      // Update the inputLength property with the length of the input value
+      this.inputLength = value.length;
+    });
+  }
+  @ViewChild('address') address: NgModel;
+  inputLength = 0;
+
+  ngAfterViewInit() {
+    // Subscribe to the valueChanges observable of the NgModel directive
+    this.address.valueChanges.subscribe((value: string) => {
+      // Update the inputLength property with the length of the input value
+      this.inputLength = value.length;
+    });
   }
 }

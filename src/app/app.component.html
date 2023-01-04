@@ -19,6 +19,9 @@
       <p class="help-block" *ngIf="!Name.valid && Name.touched">
         Please enter characters between 3 and 100.
       </p>
+      <p class="help-block">
+      Characters: {{ inputLength }}
+      </p>
     </div>
     <div class="form-group">
       <label>Email: </label>
@@ -101,6 +104,9 @@
         Please enter characters between 10 and 250.
       </p>
     </div>
+    <p class="help-block">
+    Characters: {{ inputLength }}
+    </p>
     <button class="btn btn-primary" type="submit" [disabled]="!f.valid">
       Submit
     </button>
@@ -133,6 +139,9 @@
           <td>{{ datePipe.transform(user.dob, 'yyyy-MM-dd') }}</td>
         </tr>
       </tbody>
+      <!-- <ul>
+        <li *ngFor="let data of formData">{{ data | json }}</li>
+      </ul> -->
     </table>
   </div>
 </div>
