@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
     this.datePipe = datePipe;
   }
 
-
   ngOnInit(): void {
     this.http
       .get('https://restcountries.com/v3.1/all')
@@ -64,6 +63,8 @@ export class AppComponent implements OnInit {
     localStorage.setItem('formData', JSON.stringify(this.formData));
 
     this.Forms.reset();
+    this.nameInputLength = 0;
+    this.addressInputLength = 0;
   }
   @ViewChild('Name') Name: NgModel;
   nameInputLength = 0;
