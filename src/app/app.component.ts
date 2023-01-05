@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   datePipe: DatePipe;
 
   constructor(private http: HttpClient, datePipe: DatePipe) {
-    this.datePipe = datePipe;
-  }
+    this.datePipe = datePipe;         
+  }    //regex date
 
   ngOnInit(): void {
     this.http
