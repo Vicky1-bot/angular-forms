@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   countries: any[];
   datePipe: DatePipe;
+  imageUrl = 'https://ringgitpay.biz/wp-content/uploads/2022/08/Blog-RP-emandate-scaled.jpg';
 
   constructor(private http: HttpClient, datePipe: DatePipe) {
     this.datePipe = datePipe;         
